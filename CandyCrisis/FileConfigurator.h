@@ -2,7 +2,6 @@
 #ifndef FILECONFIGURATOR_H
 #define FILECONFIGURATOR_H
 #include <fstream>
-#endif
 #include <string>
 using namespace std;
 #include "Configurator.h"
@@ -17,10 +16,10 @@ public:
 	FileConfigurator(string filepath);
 	string getFilePath();
 	virtual string getGameBoard() override;
-	virtual ~FileConfigurator() {};
 private:
 	string _filePath;
 	string _getFileContents();
 	string _extractBoardSymbolFromFileContents(string fileContents);
 
 };
+#endif

@@ -1,0 +1,7 @@
+packages/
+Release/
+Debug/
+CandyCrisis/Release/
+CandyCrisis/Debug/
+*.tlog
+*.obj

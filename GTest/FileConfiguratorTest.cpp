@@ -79,3 +79,7 @@ TEST(FileConfiguratorTests, TestExceptionIfTooManyCharacters) {
 		ASSERT_EQ(2, err);
 	}
 }
+
+
+
+
