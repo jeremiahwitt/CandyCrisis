@@ -1,0 +1,4 @@
+﻿  FileConfiguratorTest.cpp
+d:\documents\aaschool\7 - winter 2018\comp 472\project\candycrisis\gtest\../CandyCrisis/FileConfigurator.cpp(57): warning C4018: '<': signed/unsigned mismatch
+FileConfiguratorTest.cpp(43): warning C4101: 'err': unreferenced local variable
+  GTest.vcxproj -> D:\Documents\AASCHOOL\7 - Winter 2018\COMP 472\project\CandyCrisis\Release\GTest.exe
