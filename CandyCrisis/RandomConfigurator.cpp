@@ -21,18 +21,13 @@ string RandomConfigurator::getGameBoard() {
 	srand(time(NULL));
 	vector<char> charsToBeUsed = _getCharsForLevel();
 
-	for (int i = 0; i < 15; i++) {
-		cout << charsToBeUsed.at(i);
-	}
-
 	string gameboard = "";
 
 	// Remove each char one by one, and add it to the game board. We will select a random char each time
 	for (int i = 0; i < BOARD_SIZE; i++) {
 		int randomIndex = rand() % charsToBeUsed.size();
-		cout << randomIndex + " " + i + '\n';
 
-		gameboard += charsToBeUsed.at(randomIndex);
+		gameboard += (char) charsToBeUsed.at(randomIndex);
 		charsToBeUsed.erase(charsToBeUsed.begin() + randomIndex); // Remove the element that we just grabbed
 	}
 

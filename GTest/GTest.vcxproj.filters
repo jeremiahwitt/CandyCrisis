@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="FileConfiguratorTest.cpp">
+      <Filter>configurator</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomConfiguratorTest.cpp">
+      <Filter>configurator</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoardTest.cpp">
+      <Filter>gameComponents\gameboard</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanPlayerTest.cpp">
+      <Filter>gameComponents</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="configurator">
+      <UniqueIdentifier>{c4a6e447-fd17-46cc-afb4-b02972201148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameComponents">
+      <UniqueIdentifier>{f5a4d883-3232-43b4-bd29-18e9d2e4d700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameComponents\gameboard">
+      <UniqueIdentifier>{9c5f38d0-6d9b-45fd-98bc-302248843951}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

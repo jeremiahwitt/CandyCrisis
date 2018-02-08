@@ -3,8 +3,7 @@
 using namespace std;
 
 GameBoard::GameBoard(string contentsOfTheBoard) {
-	_gameBoardContents = new char[NUM_TILES];
-
+	
 	// Setup the top row
 	int rowOffset = 0;
 	char  currentChar;
@@ -38,6 +37,7 @@ GameBoard::GameBoard(string contentsOfTheBoard) {
 			_e_HorizontalPosition = i - rowOffset;
 		}
 	}
+	cout << "Done setting up board"; // TODO remove!
 }
 
 /**
@@ -69,7 +69,7 @@ bool GameBoard::move_E_left() {
 		throw 1; // TODO maybe change this to a better exception!
 	}
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
-	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition - 1);
+	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, --_e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
 	return isSolved();
 }
@@ -80,7 +80,7 @@ bool GameBoard::move_E_right() {
 		throw 1; // TODO maybe change this to a better exception!
 	}
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
-	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition + 1);
+	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, ++_e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
 	return isSolved();
 }
@@ -91,7 +91,7 @@ bool GameBoard::move_E_down() {
 		throw 1; // TODO maybe change this to a better exception!
 	}
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
-	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition + 1, _e_HorizontalPosition);
+	int indexOfCharToBeSwapped = _getIndexFromPosition(++_e_VerticalPosition, _e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
 	return isSolved();
 }
@@ -102,7 +102,7 @@ bool GameBoard::move_E_up() {
 		throw 1; // TODO maybe change this to a better exception!
 	}
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
-	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition - 1, _e_HorizontalPosition);
+	int indexOfCharToBeSwapped = _getIndexFromPosition(--_e_VerticalPosition, _e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
 	return isSolved();
 }
@@ -179,19 +179,20 @@ void GameBoard::_swapBasedOnIndices(int a, int b) {
 }
 
 void GameBoard::printCurrentConfiguration() {
+	system("CLS");
 	// Print Top Row
 	for(int i = 0; i < NUM_COLUMNS; i++) {
-		cout << getTileAt(TOP_ROW, i) + " ";
+		cout << getTileAt(TOP_ROW, i) << " ";
 	}
 	cout << endl;
 	// Print Middle Row
 	for (int i = 0; i < NUM_COLUMNS; i++) {
-		cout << getTileAt(MIDDLE_ROW, i) + " ";
+		cout << getTileAt(MIDDLE_ROW, i) << " ";
 	}
 	cout << endl;
 	// Print Bottom Row
 	for (int i = 0; i < NUM_COLUMNS; i++) {
-		cout << getTileAt(BOTTOM_ROW, i) + " ";
+		cout << getTileAt(BOTTOM_ROW, i) << " ";
 	}
 	cout << endl;
 }

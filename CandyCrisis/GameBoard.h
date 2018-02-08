@@ -27,7 +27,7 @@ public:
 	char getTileAt(int verticalPos, int horizontalPos);
 	void printCurrentConfiguration();
 private:
-	char* _gameBoardContents;
+	char _gameBoardContents[NUM_TILES];
 	int _e_VerticalPosition;
 	int _e_HorizontalPosition;
 	static int _getIndexFromPosition(int vertPos, int horizPos);

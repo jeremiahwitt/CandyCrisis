@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\configurator">
+      <UniqueIdentifier>{ffb4a373-4b66-4624-a910-0664a3962c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\configurator">
+      <UniqueIdentifier>{5f86b4b7-b7f1-4751-853e-e24b897bbb2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\player">
+      <UniqueIdentifier>{e1fbac99-543c-4e59-9040-ffb694821d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\player">
+      <UniqueIdentifier>{824d1d63-e3df-4153-a031-44fc3b2bd5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gameComponents">
+      <UniqueIdentifier>{bb6c2da6-ff66-406d-9b1f-c7b48a6daa4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gameComponents">
+      <UniqueIdentifier>{abd7d880-570f-4182-93d2-b42a1b8807e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gameComponents\controller">
+      <UniqueIdentifier>{f1a6e9c3-3b8d-45d1-ac7f-8ad218f457cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gameComponents\controller">
+      <UniqueIdentifier>{518f9df8-1b62-4501-9879-e2c39075a5ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -22,13 +46,28 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Configurator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\configurator</Filter>
     </ClInclude>
     <ClInclude Include="FileConfigurator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\configurator</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomConfigurator.h">
+      <Filter>Header Files\configurator</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanPlayer.h">
+      <Filter>Header Files\player</Filter>
     </ClInclude>
     <ClInclude Include="GameBoard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\gameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files\gameComponents\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementDirection.h">
+      <Filter>Header Files\gameComponents\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -38,11 +77,20 @@
     <ClCompile Include="CandyCrisis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameBoard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FileConfigurator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\configurator</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomConfigurator.cpp">
+      <Filter>Source Files\configurator</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanPlayer.cpp">
+      <Filter>Source Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoard.cpp">
+      <Filter>Source Files\gameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files\gameComponents\controller</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

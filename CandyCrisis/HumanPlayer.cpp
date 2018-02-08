@@ -12,29 +12,37 @@ void HumanPlayer::playGame() {
 	char desiredMove;
 	bool isSolved = false;
 	bool quittingGame = false;
-	displayValidKeys();
+
 	while(!isSolved && !quittingGame) {
+		displayValidKeys();
 		desiredMove = _getch();
-		switch(desiredMove) {
-		case 'w':
-			isSolved = _gameController->makeMove(UP);
-			break;
-		case 'a':
-			isSolved = _gameController->makeMove(LEFT);
-			break;
-		case 's':
-			isSolved = _gameController->makeMove(DOWN);
-			break;
-		case 'd':
-			isSolved = _gameController->makeMove(RIGHT);
-			break;
-		case 'e':
-			quittingGame = true;
-			break;
-		default:
-			cout << "You must press a valid key! Try again." << endl;
+		try {
+			switch (desiredMove) {
+			case 'w':
+				isSolved = _gameController->makeMove(UP);
+				break;
+			case 'a':
+				isSolved = _gameController->makeMove(LEFT);
+				break;
+			case 's':
+				isSolved = _gameController->makeMove(DOWN);
+				break;
+			case 'd':
+				isSolved = _gameController->makeMove(RIGHT);
+				break;
+			case 'e':
+				quittingGame = true;
+				break;
+			default:
+				cout << "You must press a valid key! Try again." << endl;
+				displayValidKeys();
+			}
+		} catch (int e) { // TODO make better
+			cout << "That move is not valid!";
+			displayValidKeys();
 		}
 	}
+
 	if(isSolved) {
 		cout << "Congrats, you won the game!";
 	}

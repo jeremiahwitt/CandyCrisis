@@ -2,6 +2,8 @@
 #ifndef RANDOMCONFIGURATOR_H
 #define RANDOMCONFIGURATOR_H
 #include "Configurator.h"
+#include <vector>
+using namespace std;
 
 class RandomConfigurator : public Configurator {
 public:

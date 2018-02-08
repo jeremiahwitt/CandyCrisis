@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "../CandyCrisis/Controller.h"
+#include "../CandyCrisis/Controller.cpp"
 #include "../CandyCrisis/HumanPlayer.cpp"
 #include <thread>
 #include <windows.h>
@@ -7,10 +7,11 @@
 void makeUpMove();
 
 TEST(HumanPlayerTests, MakeUpMove) {
-	Controller* myController = new Controller();
+	Controller* myController = new Controller(new GameBoard("aaaaabbbbbebbbb"));
 	HumanPlayer testPlayer(myController);
 
-	//thread move(makeUpMove);
+	thread move(makeUpMove);
+
 	testPlayer.playGame();
 	//thread move(quit);
 	// Validate that the e moved up
@@ -23,7 +24,7 @@ TEST(HumanPlayerTests, MakeUpMove) {
 // make test to make sure the e moves right
 // Make test that an invalid move throws an exception
 void makeUpMove() {
-	testing::internal::SleepMilliseconds(1000);
+	testing::internal::SleepMilliseconds(400);
 	INPUT input;
 	input.type = INPUT_KEYBOARD;
 	input.ki.wScan = 0;
