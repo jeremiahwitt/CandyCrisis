@@ -1,6 +1,9 @@
+#pragma once
+
 #include "stdafx.h"
 #include "HumanPlayer.h"
 #include <conio.h>
+#include "IllegalMoveException.h"
 
 HumanPlayer::HumanPlayer(Controller* gameController) {
 	_gameController = gameController;
@@ -37,7 +40,7 @@ void HumanPlayer::playGame() {
 				cout << "You must press a valid key! Try again." << endl;
 				displayValidKeys();
 			}
-		} catch (int e) { // TODO make better
+		} catch (IllegalMoveException err) { 
 			cout << "That move is not valid!";
 			displayValidKeys();
 		}

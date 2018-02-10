@@ -1,12 +1,15 @@
+#pragma once
+
 #include "stdafx.h"
 #include "Controller.h"
 
 /**
- * Public Constructor. Sets up the GameBoard to be used by this controller.
+ * Public Constructor. Sets up the GameBoard to be used by this controller and the solution path.
  */
 Controller::Controller(GameBoard* theGame) {
 	_board = theGame;
 	_board->printCurrentConfiguration();
+	_solutionPathString = "";
 }
 
 /**
@@ -18,6 +21,8 @@ Controller::Controller(GameBoard* theGame) {
  */
 bool Controller::makeMove(MovementDirection direction) {
 	bool isSolved = false;
+
+	// Try to move in the direction that the user requested.
 	switch(direction) {
 	case UP:
 		isSolved = _board->move_E_up();
@@ -32,7 +37,18 @@ bool Controller::makeMove(MovementDirection direction) {
 		isSolved = _board->move_E_right();
 		break;
 	}
-	_board->printCurrentConfiguration();
-
+	_board->printCurrentConfiguration(); // TODO this should be moved to the view!
+	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
+	cout << "The moves so far are " << _solutionPathString << endl;
+	// Will need to catch the exception maybe! TODO
 	return isSolved;
+}
+
+/**
+ * Returns a string representing the solution path thus far. This is the sequence of squares
+ * that the blank/empty square has gone to!
+ */
+string Controller::getSolutionPath() {
+
+	return _solutionPathString;
 }

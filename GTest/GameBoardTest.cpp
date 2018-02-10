@@ -11,7 +11,7 @@ TEST(GameBoardTest, TestValidUpMoveFromMiddle) {
 		testBoard.move_E_up();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::TOP_ROW, 2));
 		ASSERT_EQ('a', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 2));
-	} catch(int error) {
+	} catch(IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -24,7 +24,7 @@ TEST(GameBoardTest, TestValidUpMoveFromBottom) {
 		testBoard.move_E_up();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 2));
 		ASSERT_EQ('b', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -37,7 +37,7 @@ TEST(GameBoardTest, TestValidDownMoveFromTop) {
 		testBoard.move_E_down();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 2));
 		ASSERT_EQ('b', testBoard.getTileAt(GameBoard::TOP_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -50,7 +50,7 @@ TEST(GameBoardTest, TestValidDownMoveFromMiddle) {
 		testBoard.move_E_down();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 2));
 		ASSERT_EQ('c', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -64,7 +64,7 @@ TEST(GameBoardTest, TestValidLeftMoveInTopRow) {
 		testBoard.printCurrentConfiguration();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::TOP_ROW, 1));
 		ASSERT_EQ('a', testBoard.getTileAt(GameBoard::TOP_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -77,7 +77,7 @@ TEST(GameBoardTest, TestValidLeftMoveInMiddleRow) {
 		testBoard.move_E_left();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 1));
 		ASSERT_EQ('b', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -90,7 +90,7 @@ TEST(GameBoardTest, TestValidLeftMoveInBottomRow) {
 		testBoard.move_E_left();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 1));
 		ASSERT_EQ('c', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -103,7 +103,7 @@ TEST(GameBoardTest, TestValidRightMoveInTopRow) {
 		testBoard.move_E_right();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::TOP_ROW, 3));
 		ASSERT_EQ('a', testBoard.getTileAt(GameBoard::TOP_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -116,7 +116,7 @@ TEST(GameBoardTest, TestValidRightMoveInMiddleRow) {
 		testBoard.move_E_right();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 4));
 		ASSERT_EQ('b', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 3));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -132,7 +132,7 @@ TEST(GameBoardTest, TestValidRightMoveInBottomRow) {
 		testBoard.printCurrentConfiguration();
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 3));
 		ASSERT_EQ('c', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 2));
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		FAIL() << "An exception should NOT have been thrown when moving the empty square";
 	}
 }
@@ -144,7 +144,7 @@ TEST(GameBoardTest, TestInvalidUpMove) {
 	try {
 		testBoard.move_E_up();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::TOP_ROW, 2));
 	}
 }
@@ -156,7 +156,7 @@ TEST(GameBoardTest, TestInvalidDownMove) {
 	try {
 		testBoard.move_E_down();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 2));
 	}
 }
@@ -168,7 +168,7 @@ TEST(GameBoardTest, TestInvalidLeftMoveInTopRow) {
 	try {
 		testBoard.move_E_left();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::TOP_ROW, 0));
 	}
 }
@@ -180,7 +180,7 @@ TEST(GameBoardTest, TestInvalidLeftMoveInMiddleRow) {
 	try {
 		testBoard.move_E_left();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 0));
 	}
 }
@@ -192,7 +192,7 @@ TEST(GameBoardTest, TestInvalidLeftMoveInBottomRow) {
 	try {
 		testBoard.move_E_left();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 0));
 	}
 }
@@ -204,7 +204,7 @@ TEST(GameBoardTest, TestInvalidRightMoveInTopRow) {
 	try {
 		testBoard.move_E_right();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::TOP_ROW, 4));
 	}
 }
@@ -216,7 +216,7 @@ TEST(GameBoardTest, TestInvalidRightMoveInMiddleRow) { // TODO introduce for eac
 	try {
 		testBoard.move_E_right();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::MIDDLE_ROW, 4));
 	}
 }
@@ -228,7 +228,7 @@ TEST(GameBoardTest, TestInvalidRightMoveInBottomRow) {
 	try {
 		testBoard.move_E_right();
 		FAIL() << "An exception SHOULD have been thrown when moving the empty square";
-	} catch (int error) {
+	} catch (IllegalMoveException error) {
 		ASSERT_EQ('e', testBoard.getTileAt(GameBoard::BOTTOM_ROW, 4));
 	}
 }

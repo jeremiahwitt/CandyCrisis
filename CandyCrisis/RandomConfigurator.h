@@ -9,6 +9,9 @@ class RandomConfigurator : public Configurator {
 public:
 	RandomConfigurator(int difficultyLevel);
 	virtual string getGameBoard();
+	virtual bool hasAnotherBoard() {
+		return false;
+	}
 private:
 	int _difficultyLevel;
 	vector<char> _getCharsForLevel();

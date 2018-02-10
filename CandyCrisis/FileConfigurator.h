@@ -16,10 +16,12 @@ public:
 	FileConfigurator(string filepath);
 	string getFilePath();
 	virtual string getGameBoard() override;
+	virtual bool hasAnotherBoard() override;
 private:
 	string _filePath;
+	string _fileContents;
 	string _getFileContents();
 	string _extractBoardSymbolFromFileContents(string fileContents);
-
+	int numGamesPlayed;
 };
 #endif

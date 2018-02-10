@@ -1,5 +1,7 @@
+#pragma once
 #include "stdafx.h"
 #include "GameBoard.h"
+#include "IllegalMoveException.h"
 using namespace std;
 
 GameBoard::GameBoard(string contentsOfTheBoard) {
@@ -37,7 +39,6 @@ GameBoard::GameBoard(string contentsOfTheBoard) {
 			_e_HorizontalPosition = i - rowOffset;
 		}
 	}
-	cout << "Done setting up board"; // TODO remove!
 }
 
 /**
@@ -66,8 +67,9 @@ bool GameBoard::isSolved() {
 bool GameBoard::move_E_left() {
 	if(_e_HorizontalPosition == 0) {
 		// Cannot go any further left!
-		throw 1; // TODO maybe change this to a better exception!
+		throw IllegalMoveException();
 	}
+
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, --_e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
@@ -77,7 +79,7 @@ bool GameBoard::move_E_left() {
 bool GameBoard::move_E_right() {
 	if (_e_HorizontalPosition == NUM_COLUMNS - 1) {
 		// Cannot go any further right!
-		throw 1; // TODO maybe change this to a better exception!
+		throw IllegalMoveException(); 
 	}
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, ++_e_HorizontalPosition);
@@ -88,8 +90,9 @@ bool GameBoard::move_E_right() {
 bool GameBoard::move_E_down() {
 	if (_e_VerticalPosition == NUM_ROWS - 1) {
 		// Cannot go any further down!
-		throw 1; // TODO maybe change this to a better exception!
+		throw IllegalMoveException();
 	}
+
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(++_e_VerticalPosition, _e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
@@ -99,8 +102,9 @@ bool GameBoard::move_E_down() {
 bool GameBoard::move_E_up() {
 	if (_e_VerticalPosition == 0) {
 		// Cannot go any further ip!
-		throw 1; // TODO maybe change this to a better exception!
+		throw IllegalMoveException();
 	}
+
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(--_e_VerticalPosition, _e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);

@@ -8,6 +8,7 @@
  */
 FileConfigurator::FileConfigurator(string filepath){
 	this->_filePath = filepath;
+	numGamesPlayed = 0;
 }
 
 string FileConfigurator::getFilePath() {
@@ -20,33 +21,58 @@ string FileConfigurator::getFilePath() {
  * exception will be thrown.
  */
 string FileConfigurator::getGameBoard() {
-	string fileContents = _getFileContents();
-	string onlyBoardSymbols = _extractBoardSymbolFromFileContents(fileContents);
-	cout << onlyBoardSymbols;
-
-	if(onlyBoardSymbols.length() != BOARD_SIZE) {
-		throw 2; // TODO give better exception
+	
+	// Try to get the file contents. We will try to catch exceptions if any get thrown
+	string fileContents;
+	try {
+		fileContents = _getFileContents();
+	} catch (exception err) {
+		cout << "Could not get the contents of the file!";
+		throw 2;
 	}
 
-	return onlyBoardSymbols;
+	// Get the next 15 characters
+	string onlyBoardSymbolsForThisGame;
+	try {
+		onlyBoardSymbolsForThisGame = fileContents.substr(numGamesPlayed*BOARD_SIZE, BOARD_SIZE);
+	} catch (bad_alloc err) {
+		cout << "There are not enough symbols in the file to generate another board!";
+		throw 2;
+	}
+
+	numGamesPlayed++;
+	return onlyBoardSymbolsForThisGame;
 }
+
+bool FileConfigurator::hasAnotherBoard() {
+	if(numGamesPlayed == 0) {
+		return true;
+	} else {
+		return (_fileContents.size() - (numGamesPlayed * BOARD_SIZE)) >= BOARD_SIZE;
+	}
+}
+
 
 /**
  * Returns a string containing what is in the file at the location of _filePath
  */
 string FileConfigurator::_getFileContents() {
-	ifstream gameBoardFile = ifstream(_filePath);
-	string line;
-	string fileContents;
-	if (gameBoardFile.is_open()) {
-		while (getline(gameBoardFile, line)) {
-			fileContents = fileContents + line + " ";
+	if (numGamesPlayed == 0) {
+		ifstream gameBoardFile = ifstream(_filePath);
+		string line;
+		string fileContents;
+		if (gameBoardFile.is_open()) {
+			while (getline(gameBoardFile, line)) {
+				fileContents = fileContents + line + " ";
+			}
+		} else {
+			throw 1; // TODO maybe change this
 		}
-	} else {
-		throw 1; // TODO maybe change this
+
+		_fileContents = _extractBoardSymbolFromFileContents(fileContents);
 	}
 
-	return fileContents;
+	return _fileContents;
 }
 
 /**

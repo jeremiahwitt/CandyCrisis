@@ -153,6 +153,7 @@
     <ClInclude Include="FileConfigurator.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="HumanPlayer.h" />
+    <ClInclude Include="IllegalMoveException.h" />
     <ClInclude Include="MovementDirection.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomConfigurator.h" />

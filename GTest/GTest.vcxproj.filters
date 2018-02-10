@@ -11,9 +11,6 @@
     <ClCompile Include="GameBoardTest.cpp">
       <Filter>gameComponents\gameboard</Filter>
     </ClCompile>
-    <ClCompile Include="HumanPlayerTest.cpp">
-      <Filter>gameComponents</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
