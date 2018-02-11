@@ -2,6 +2,7 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 #include "stdafx.h"
+#include "Subject.h"
 using namespace std;
 /**
  * @class Gameboard
@@ -9,7 +10,7 @@ using namespace std;
  *		  Provides methods which allow for manipulation of the tiles, as well as a way to determine
  *		  if the game has been solved.
  */
-class GameBoard {
+class GameBoard : public Subject {
 public:
 	static const int TOP_ROW = 0;
 	static const int MIDDLE_ROW = 1;
@@ -37,5 +38,4 @@ private:
 inline int GameBoard::_getIndexFromPosition(int vertPos, int horizPos) {
 	return vertPos + (3 * horizPos);
 }
-
 #endif

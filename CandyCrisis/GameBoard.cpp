@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "GameBoard.h"
 #include "IllegalMoveException.h"
+#include <thread>
 using namespace std;
 
 GameBoard::GameBoard(string contentsOfTheBoard) {
@@ -73,7 +74,11 @@ bool GameBoard::move_E_left() {
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, --_e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
-	return isSolved();
+
+	thread updateObservers(&Subject::notify, this);
+	bool solved = isSolved();
+	updateObservers.join();
+	return solved;
 }
 
 bool GameBoard::move_E_right() {
@@ -84,7 +89,11 @@ bool GameBoard::move_E_right() {
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(_e_VerticalPosition, ++_e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
-	return isSolved();
+	
+	thread updateObservers(&Subject::notify, this);
+	bool solved = isSolved();
+	updateObservers.join();
+	return solved;
 }
 
 bool GameBoard::move_E_down() {
@@ -96,7 +105,11 @@ bool GameBoard::move_E_down() {
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(++_e_VerticalPosition, _e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
-	return isSolved();
+	
+	thread updateObservers(&Subject::notify, this);
+	bool solved = isSolved();
+	updateObservers.join();
+	return solved;
 }
 
 bool GameBoard::move_E_up() {
@@ -108,7 +121,11 @@ bool GameBoard::move_E_up() {
 	int eIndex = _getIndexFromPosition(_e_VerticalPosition, _e_HorizontalPosition);
 	int indexOfCharToBeSwapped = _getIndexFromPosition(--_e_VerticalPosition, _e_HorizontalPosition);
 	_swapBasedOnIndices(eIndex, indexOfCharToBeSwapped);
-	return isSolved();
+	
+	thread updateObservers(&Subject::notify, this);
+	bool solved = isSolved();
+	updateObservers.join();
+	return solved;
 }
 
 /**

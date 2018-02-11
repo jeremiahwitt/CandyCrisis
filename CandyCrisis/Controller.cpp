@@ -1,6 +1,5 @@
-#pragma once
-
 #include "stdafx.h"
+#pragma once
 #include "Controller.h"
 
 /**
@@ -37,7 +36,7 @@ bool Controller::makeMove(MovementDirection direction) {
 		isSolved = _board->move_E_right();
 		break;
 	}
-	_board->printCurrentConfiguration(); // TODO this should be moved to the view!
+	// _board->printCurrentConfiguration(); // TODO this should be moved to the view!
 	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
 	cout << "The moves so far are " << _solutionPathString << endl;
 	// Will need to catch the exception maybe! TODO

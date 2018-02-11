@@ -37,6 +37,9 @@
     <Filter Include="Source Files\gameComponents\controller">
       <UniqueIdentifier>{518f9df8-1b62-4501-9879-e2c39075a5ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gameComponents\view">
+      <UniqueIdentifier>{cf0610a2-034e-418f-872a-04abf42774f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -72,6 +75,15 @@
     <ClInclude Include="IllegalMoveException.h">
       <Filter>Header Files\gameComponents</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files\gameComponents\view</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Header Files\gameComponents\view</Filter>
+    </ClInclude>
+    <ClInclude Include="GameView.h">
+      <Filter>Header Files\gameComponents\view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -94,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files\gameComponents\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files\gameComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
