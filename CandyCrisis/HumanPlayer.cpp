@@ -5,11 +5,6 @@
 #include <conio.h>
 #include "IllegalMoveException.h"
 
-HumanPlayer::HumanPlayer(Controller* gameController) {
-	_gameController = gameController;
-}
-
-
 void HumanPlayer::playGame() {
 	// get char
 	char desiredMove;
@@ -48,6 +43,7 @@ void HumanPlayer::playGame() {
 
 	if(isSolved) {
 		cout << "Congrats, you won the game!";
+		system("pause");
 	}
 
 }
@@ -55,4 +51,3 @@ void HumanPlayer::playGame() {
 void HumanPlayer::displayValidKeys() {
 	cout << "[W = UP] [A = LEFT] [S = DOWN] [D = RIGHT] [E = QUIT]" << endl;
 }
-

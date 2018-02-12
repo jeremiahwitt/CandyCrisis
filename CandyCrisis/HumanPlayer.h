@@ -5,14 +5,13 @@
 #include "Controller.h"
 using namespace std;
 
-class HumanPlayer : Player {
+class HumanPlayer : public Player {
 
 public:
-	HumanPlayer(Controller* gameController);
+	HumanPlayer() {};
 	~HumanPlayer() override {};
 	void playGame() override;
 private:
-	Controller* _gameController;
 	static void displayValidKeys();
 };
 #endif

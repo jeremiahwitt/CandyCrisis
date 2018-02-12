@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <vector>
 #include <ctime>
-#include <iostream> //TODO remove this!
 #include "RandomConfigurator.h"
 using namespace std;
 

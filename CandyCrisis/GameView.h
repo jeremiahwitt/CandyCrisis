@@ -9,7 +9,7 @@ class GameView : Observer {
 public:
 	GameView(GameBoard* board) { _board = board; _board->attach(this); };
 	void update() { _board->printCurrentConfiguration(); };
-	~GameView() { _board->detach(this); } // TODO probably do a null check!
+	~GameView() { if (_board != nullptr) { _board->detach(this); } }
 private:
 	GameBoard* _board;
 };

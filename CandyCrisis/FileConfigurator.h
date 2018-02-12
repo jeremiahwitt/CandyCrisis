@@ -22,6 +22,7 @@ private:
 	string _fileContents;
 	string _getFileContents();
 	string _extractBoardSymbolFromFileContents(string fileContents);
+	void verifyValidBoard(string boardContents);
 	int numGamesPlayed;
 };
 #endif

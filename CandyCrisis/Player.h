@@ -1,6 +1,7 @@
 #pragma once
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "Controller.h"
 
 /**
  * @class Player
@@ -8,9 +9,11 @@
  */
 class Player {
 public:
-	virtual ~Player() = default;
-	virtual void playGame() = 0; //TODO make this take an argument, which is the controller!
-	
+	virtual ~Player() { delete _gameController;  };
+	virtual void playGame() = 0; 
+	virtual void setController(Controller* newController) { _gameController = newController; }
+protected:
+	Controller * _gameController;
 };
 #endif
 

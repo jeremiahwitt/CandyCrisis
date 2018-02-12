@@ -18,7 +18,6 @@ public:
 	virtual void notify();
 
 	Subject();
-	~Subject() { delete _observers; };
 private:
 	list<Observer*> *_observers;
 

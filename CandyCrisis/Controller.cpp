@@ -3,6 +3,16 @@
 #include "Controller.h"
 
 /**
+* Public Constructor. Sets up the GameBoard to be used by this controller and the solution path, as well as the view for the GameBoard
+*/
+Controller::Controller(GameBoard* theGame, GameView* theView) {
+	_view = theView;
+	_board = theGame;
+	_board->printCurrentConfiguration();
+	_solutionPathString = "";
+}
+
+/**
  * Public Constructor. Sets up the GameBoard to be used by this controller and the solution path.
  */
 Controller::Controller(GameBoard* theGame) {
@@ -36,10 +46,9 @@ bool Controller::makeMove(MovementDirection direction) {
 		isSolved = _board->move_E_right();
 		break;
 	}
-	// _board->printCurrentConfiguration(); // TODO this should be moved to the view!
 	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
 	cout << "The moves so far are " << _solutionPathString << endl;
-	// Will need to catch the exception maybe! TODO
+
 	return isSolved;
 }
 

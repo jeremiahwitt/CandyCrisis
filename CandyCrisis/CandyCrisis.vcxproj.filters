@@ -84,6 +84,9 @@
     <ClInclude Include="GameView.h">
       <Filter>Header Files\gameComponents\view</Filter>
     </ClInclude>
+    <ClInclude Include="GameBuilder.h">
+      <Filter>Header Files\gameComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files\gameComponents\controller</Filter>
     </ClCompile>
     <ClCompile Include="Subject.cpp">
+      <Filter>Source Files\gameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBuilder.cpp">
       <Filter>Source Files\gameComponents</Filter>
     </ClCompile>
   </ItemGroup>

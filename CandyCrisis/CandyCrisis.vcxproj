@@ -152,6 +152,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="FileConfigurator.h" />
     <ClInclude Include="GameBoard.h" />
+    <ClInclude Include="GameBuilder.h" />
     <ClInclude Include="GameView.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="IllegalMoveException.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FileConfigurator.cpp" />
     <ClCompile Include="GameBoard.cpp" />
+    <ClCompile Include="GameBuilder.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="RandomConfigurator.cpp" />
     <ClCompile Include="stdafx.cpp">

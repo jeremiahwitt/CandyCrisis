@@ -4,7 +4,7 @@
 #include <iostream>
 
 /**
- * TODO javadoc
+ * Public constructor which sets the filepath that'll be used to fetch the gameboard
  */
 FileConfigurator::FileConfigurator(string filepath){
 	this->_filePath = filepath;
@@ -31,6 +31,11 @@ string FileConfigurator::getGameBoard() {
 		throw 2;
 	}
 
+	if(fileContents.length() < 15) {
+		cout << "There aren't enough characters in the file!" << endl;
+		throw 3;
+	}
+
 	// Get the next 15 characters
 	string onlyBoardSymbolsForThisGame;
 	try {
@@ -41,6 +46,7 @@ string FileConfigurator::getGameBoard() {
 	}
 
 	numGamesPlayed++;
+	verifyValidBoard(onlyBoardSymbolsForThisGame);
 	return onlyBoardSymbolsForThisGame;
 }
 
@@ -66,7 +72,7 @@ string FileConfigurator::_getFileContents() {
 				fileContents = fileContents + line + " ";
 			}
 		} else {
-			throw 1; // TODO maybe change this
+			throw 1;
 		}
 
 		_fileContents = _extractBoardSymbolFromFileContents(fileContents);
@@ -76,7 +82,7 @@ string FileConfigurator::_getFileContents() {
 }
 
 /**
- * TODO javadoc
+ * Returns a string with ONLY the symbols that represent the board of the game!
  */
 string FileConfigurator::_extractBoardSymbolFromFileContents(string fileContents) {
 	string onlyBoardSymbols = "";
@@ -87,4 +93,68 @@ string FileConfigurator::_extractBoardSymbolFromFileContents(string fileContents
 	}
 
 	return onlyBoardSymbols;
+}
+
+void FileConfigurator::verifyValidBoard(string boardContents) {
+	int countReese = 0;
+	int countBazooka = 0;
+	int countWalnettos = 0;
+	int countYork = 0;
+	int countGobstopper = 0;
+	int countPez = 0;
+	int countEmpty = 0;
+
+	for(int i = 0; i < boardContents.length(); i++) {
+		switch(boardContents.at(i)) {
+		case 'r':
+			countReese++;
+			break;
+		case 'b':
+			countBazooka++;
+			break;
+		case 'w':
+			countWalnettos++;
+			break;
+		case 'y':
+			countYork++;
+			break;
+		case 'g':
+			countGobstopper++;
+			break;
+		case 'p':
+			countPez++;
+			break;
+		case 'e':
+			countEmpty++;
+			break;
+		}
+	}
+
+	if(countEmpty != 1) {
+		cout << "I didn't find the right number of empty squares! There should be exactly one!" << endl;
+		throw 1;
+	}
+
+	// LEVEL 1
+	if(countReese == 6 && countBazooka == 6 && countWalnettos == 2) {
+		return;
+	}
+
+	// LEVEL 2
+	if (countReese == 6 && countBazooka == 4 && countWalnettos == 2 && countYork == 2) {
+		return;
+	}
+
+	// LEVEL 3
+	if (countReese == 4 && countBazooka == 4 && countWalnettos == 2 && countYork == 2 && countGobstopper == 2) {
+		return;
+	}
+
+	// LEVEL 4
+	if (countReese == 4 && countBazooka == 2 && countWalnettos == 2 && countYork == 2 && countGobstopper == 2 && countPez == 2) {
+		return;
+	}
+
+	cout << "The board configuration is invalid!" << endl;
+	throw 4;
 }

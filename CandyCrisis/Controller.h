@@ -3,6 +3,7 @@
 #define CONTROLLER_H
 #include "MovementDirection.h"
 #include "GameBoard.h"
+#include "GameView.h"
 #include <vector>
 
 using namespace std;
@@ -15,13 +16,14 @@ using namespace std;
 class Controller {
 public:
 	Controller(GameBoard* theGame);
+	Controller(GameBoard* theGame, GameView* theView);
 	bool makeMove(MovementDirection direction);
 	string getSolutionPath();
-	~Controller() { delete _board; }
+	~Controller() { delete _board; delete _view; }
 
 private:
 	GameBoard* _board;
 	string _solutionPathString;
-	// TODO add a view!
+	GameView* _view;
 };
 #endif
