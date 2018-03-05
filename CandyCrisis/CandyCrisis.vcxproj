@@ -148,6 +148,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AIPlayer.h" />
+    <ClInclude Include="AIPlayerUtilities.h" />
     <ClInclude Include="Configurator.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="FileConfigurator.h" />
@@ -165,6 +167,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIPlayer.cpp" />
+    <ClCompile Include="AIPlayerUtilities.cpp" />
     <ClCompile Include="CandyCrisis.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FileConfigurator.cpp" />

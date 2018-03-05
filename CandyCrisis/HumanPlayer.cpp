@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #pragma once
 
-#include "stdafx.h"
 #include "HumanPlayer.h"
 #include <conio.h>
 #include "IllegalMoveException.h"

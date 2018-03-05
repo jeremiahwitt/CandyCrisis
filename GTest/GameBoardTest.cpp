@@ -6,6 +6,24 @@
 
 using namespace std;
 
+TEST(GameBoardTest, TestGetGameBoardString) {
+	string gameboardString = "aaaaabbebbccccc";
+	GameBoard testBoard(gameboardString);
+	ASSERT_EQ(gameboardString, testBoard.getBoardString());
+}
+
+TEST(GameBoardTest, TestGetEHorizontalPosition) {
+	string gameboardString = "aaaaabbebbccccc";
+	GameBoard testBoard(gameboardString);
+	ASSERT_EQ(2, testBoard.get_E_HorizontalPosition());
+}
+
+TEST(GameBoardTest, TestGetEVerticalPosition) {
+	string gameboardString = "aaaaabbebbccccc";
+	GameBoard testBoard(gameboardString);
+	ASSERT_EQ(1, testBoard.get_E_VerticalPosition());
+}
+
 // Test that the player can make a valid move up from the middle
 TEST(GameBoardTest, TestValidUpMoveFromMiddle) {
 	string gameboardString = "aaaaabbebbccccc";

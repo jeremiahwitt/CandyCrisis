@@ -11,6 +11,9 @@
     <ClCompile Include="GameBoardTest.cpp">
       <Filter>gameComponents\gameboard</Filter>
     </ClCompile>
+    <ClCompile Include="AIPlayerUtilitiesTest.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -24,6 +27,9 @@
     </Filter>
     <Filter Include="gameComponents\gameboard">
       <UniqueIdentifier>{9c5f38d0-6d9b-45fd-98bc-302248843951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{1000887e-a4dc-45a9-a1e9-96c63fe4b8dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -60,7 +60,7 @@ TEST(FileConfiguratorTests, TestExceptionIfNotEnoughCharacters) {
 		FAIL() << "An exception should have been thrown, because the file is too short!";
 	} catch (int err) {
 		remove(testFilePath.c_str());
-		ASSERT_EQ(2, err);
+		ASSERT_EQ(3, err);
 	}
 }
 

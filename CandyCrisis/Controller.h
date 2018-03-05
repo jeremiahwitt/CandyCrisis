@@ -19,6 +19,7 @@ public:
 	Controller(GameBoard* theGame, GameView* theView);
 	bool makeMove(MovementDirection direction);
 	string getSolutionPath();
+	GameBoard* getGameBoard() { return _board; }
 	~Controller() { delete _board; delete _view; }
 
 private:

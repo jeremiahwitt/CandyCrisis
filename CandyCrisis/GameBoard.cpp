@@ -6,7 +6,7 @@
 using namespace std;
 
 GameBoard::GameBoard(string contentsOfTheBoard) {
-	
+	this->_boardString = contentsOfTheBoard;
 	// Setup the top row
 	int rowOffset = 0;
 	char  currentChar;

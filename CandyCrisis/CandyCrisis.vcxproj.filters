@@ -87,6 +87,12 @@
     <ClInclude Include="GameBuilder.h">
       <Filter>Header Files\gameComponents</Filter>
     </ClInclude>
+    <ClInclude Include="AIPlayer.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
+    <ClInclude Include="AIPlayerUtilities.h">
+      <Filter>Header Files\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -115,6 +121,12 @@
     </ClCompile>
     <ClCompile Include="GameBuilder.cpp">
       <Filter>Source Files\gameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="AIPlayer.cpp">
+      <Filter>Source Files\player</Filter>
+    </ClCompile>
+    <ClCompile Include="AIPlayerUtilities.cpp">
+      <Filter>Source Files\player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

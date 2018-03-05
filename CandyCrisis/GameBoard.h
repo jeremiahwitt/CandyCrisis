@@ -25,12 +25,16 @@ public:
 	bool move_E_down();
 	bool move_E_up();
 	char get_E_Location();
+	int get_E_HorizontalPosition() { return _e_HorizontalPosition; };
+	int get_E_VerticalPosition() { return _e_VerticalPosition; };
 	char getTileAt(int verticalPos, int horizontalPos);
+	string getBoardString() { return _boardString; }
 	void printCurrentConfiguration();
 private:
 	char _gameBoardContents[NUM_TILES];
 	int _e_VerticalPosition;
 	int _e_HorizontalPosition;
+	string _boardString;
 	static int _getIndexFromPosition(int vertPos, int horizPos);
 	void _swapBasedOnIndices(int a, int b);
 };
