@@ -4,8 +4,8 @@
 
 /**
 *@Class Observer
-* An observer keeps track of an object's state. Whenever the state of the object is updated,
-* the observer updates itself and carries out the necessary steps.
+* An observer keeps track of its subject's state. Whenever the state of the subject 
+* gets updated the observer will perform some sort of action.
 */
 class Observer {
 public:

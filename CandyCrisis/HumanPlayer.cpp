@@ -42,12 +42,12 @@ void HumanPlayer::playGame() {
 	}
 
 	if(isSolved) {
-		cout << "Congrats, you won the game!";
+		cout << "Congrats, you won the game!" << endl;
 		system("pause");
 	}
 
 }
 
 void HumanPlayer::displayValidKeys() {
-	cout << "[W = UP] [A = LEFT] [S = DOWN] [D = RIGHT] [E = QUIT]" << endl;
+	cout << "[W = UP] [A = LEFT] [S = DOWN] [D = RIGHT] [E = EXIT LEVEL]" << endl;
 }

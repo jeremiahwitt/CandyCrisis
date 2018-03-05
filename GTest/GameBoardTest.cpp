@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "../CandyCrisis/GameBoard.cpp"
+#include "../CandyCrisis/Subject.cpp"
+#include "../CandyCrisis/Observer.h"
+
 
 using namespace std;
 
@@ -197,7 +200,7 @@ TEST(GameBoardTest, TestInvalidLeftMoveInBottomRow) {
 	}
 }
 
-// Test that the player cannot make a valid move right in top row // TODO introduce for each row!
+// Test that the player cannot make a valid move right in top row 
 TEST(GameBoardTest, TestInvalidRightMoveInTopRow) {
 	string gameboardString = "aaaaebbbbbccccc";
 	GameBoard testBoard(gameboardString);
@@ -210,7 +213,7 @@ TEST(GameBoardTest, TestInvalidRightMoveInTopRow) {
 }
 
 // Test that the player cannot make a valid move right in top row
-TEST(GameBoardTest, TestInvalidRightMoveInMiddleRow) { // TODO introduce for each row!
+TEST(GameBoardTest, TestInvalidRightMoveInMiddleRow) { 
 	string gameboardString = "aaaaabbbbeccccc";
 	GameBoard testBoard(gameboardString);
 	try {

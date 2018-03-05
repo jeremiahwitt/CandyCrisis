@@ -7,19 +7,17 @@ using namespace std;
 
 /**
 *@class Subject
-* A Subject will notify its observers that a change has been made, so that the Observers can update themselves
-* accordingly
+* A Subject will notify the Observers that are observing it when its state
+* has changed
 */
 
 class Subject {
 public:
+	Subject();
 	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);
 	virtual void notify();
-
-	Subject();
 private:
 	list<Observer*> *_observers;
-
 };
 #endif

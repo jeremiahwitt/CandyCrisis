@@ -46,6 +46,7 @@ bool Controller::makeMove(MovementDirection direction) {
 		isSolved = _board->move_E_right();
 		break;
 	}
+
 	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
 	cout << "The moves so far are " << _solutionPathString << endl;
 
