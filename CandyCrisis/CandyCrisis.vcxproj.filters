@@ -40,6 +40,12 @@
     <Filter Include="Header Files\gameComponents\view">
       <UniqueIdentifier>{cf0610a2-034e-418f-872a-04abf42774f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\player\AIPlayer">
+      <UniqueIdentifier>{57bed54a-9ae2-48ab-b48e-fffde7f318c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\player\AIPlayer">
+      <UniqueIdentifier>{3b5a3fec-9d3c-49ca-b9e5-5017ab620ecd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,11 +93,14 @@
     <ClInclude Include="GameBuilder.h">
       <Filter>Header Files\gameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="AIPlayer.h">
-      <Filter>Header Files\player</Filter>
-    </ClInclude>
     <ClInclude Include="AIPlayerUtilities.h">
-      <Filter>Header Files\player</Filter>
+      <Filter>Header Files\player\AIPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AIPlayer.h">
+      <Filter>Header Files\player\AIPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AIBoardNode.h">
+      <Filter>Header Files\player\AIPlayer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,10 +132,13 @@
       <Filter>Source Files\gameComponents</Filter>
     </ClCompile>
     <ClCompile Include="AIPlayer.cpp">
-      <Filter>Source Files\player</Filter>
+      <Filter>Source Files\player\AIPlayer</Filter>
     </ClCompile>
     <ClCompile Include="AIPlayerUtilities.cpp">
-      <Filter>Source Files\player</Filter>
+      <Filter>Source Files\player\AIPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="AIBoardNode.cpp">
+      <Filter>Source Files\player\AIPlayer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
