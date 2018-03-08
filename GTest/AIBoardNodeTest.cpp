@@ -1,8 +1,83 @@
 #include "pch.h"
 #include "../CandyCrisis/AIBoardNode.cpp"
-
+#include <queue>
+#include <functional>
 
 using namespace std;
+
+// Tests based on heuristic value
+TEST(AIBoardNodeTest, TestZeroHeuristicValue) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 111112202211111);
+
+	ASSERT_EQ(0, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestOneHeuristicValue) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 112113330311111);
+
+	ASSERT_EQ(1, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestTwoHeuristicValue) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 112213330311111);
+
+	ASSERT_EQ(2, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestThreeHeuristicValue) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 111113303312221);
+
+	ASSERT_EQ(3, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestFourHeuristicValue) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 111113303322221);
+
+	ASSERT_EQ(4, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestFiveHeuristicValue) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 111112202233333);
+
+	ASSERT_EQ(5, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestFiveHeuristicValueWithEmptyUpTop) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 110112222233333);
+
+	ASSERT_EQ(5, testNode.heuristicValue());
+}
+
+TEST(AIBoardNodeTest, TestPriorityQueue) {
+	priority_queue<AIBoardNode*, vector<AIBoardNode*>, CompareNodes>* openList = new priority_queue<AIBoardNode*, vector<AIBoardNode*>, CompareNodes>(); // TODO maybe have to change this to AIBoardNode*
+	AIBoardNode testNode1(nullptr, UP, 1, 2, 111113303312221); // 3
+	AIBoardNode testNode2(nullptr, UP, 1, 2, 111112202211111); // 0
+	AIBoardNode testNode3(nullptr, UP, 1, 2, 111112202211151); // 1
+	AIBoardNode testNode4(nullptr, UP, 1, 2, 112213330311111); // 2
+
+	openList->push(&testNode1);
+	openList->push(&testNode2);
+	openList->push(&testNode3);
+	openList->push(&testNode4);
+
+	ASSERT_EQ(4, openList->size());
+	ASSERT_EQ(3, testNode1.heuristicValue());
+	ASSERT_EQ(0, testNode2.heuristicValue());
+	ASSERT_EQ(1, testNode3.heuristicValue());
+	ASSERT_EQ(2, testNode4.heuristicValue());
+
+
+	ASSERT_EQ(111112202211111, openList->top()->getBoardState());
+	openList->pop();
+	ASSERT_EQ(111112202211151, openList->top()->getBoardState());
+	openList->pop();
+	ASSERT_EQ(112213330311111, openList->top()->getBoardState());
+	openList->pop();
+	ASSERT_EQ(111113303312221, openList->top()->getBoardState());
+	openList->pop();
+
+	delete openList;
+}
 
 // Tests based on validation of movement direction
 TEST(AIBoardNodeTest, TestCanMoveUp_Valid) {

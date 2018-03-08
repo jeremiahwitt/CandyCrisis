@@ -11,6 +11,8 @@ AIBoardNode::AIBoardNode(AIBoardNode* parentNode, MovementDirection movementGene
 	this->_eVerticalLocation = eVertLocation;
 	this->_eHorizontalLocation = eHorizLocation;
 	this->_boardState = boardState;
+
+	this->calculateHeuristicValue();
 }
 
 bool AIBoardNode::canMove(MovementDirection direction) {
@@ -77,14 +79,50 @@ AIBoardNode* AIBoardNode::generateChildFromMovement(MovementDirection direction)
 	// Isolate the value to be removed
 	int swappedSymbol = (int)(rows[newEVertLocation] / pow(10, 4 - newEHorizLocation)) % 10;
 
-	// Subtract this value * correct power of 10 from the new e row
-	rows[newEVertLocation] -= swappedSymbol * pow(10, 4 - newEHorizLocation);
-
-	// Add it to the old e row
-	rows[_eVerticalLocation] += swappedSymbol * pow(10, 4 - newEHorizLocation);
+	// Perform the swapping!
+	if(direction == UP || direction == DOWN) {
+		rows[newEVertLocation] -= swappedSymbol * pow(10, 4 - newEHorizLocation);
+		rows[_eVerticalLocation] += swappedSymbol * pow(10, 4 - newEHorizLocation);
+	} else {
+		rows[_eVerticalLocation] = rows[_eVerticalLocation] + (swappedSymbol * pow(10, 4 - _eHorizontalLocation)) - (swappedSymbol * pow(10, 4 - newEHorizLocation));
+	}
 
 	// Reconstruct the long long int from the sum of all the rows, times their respective isolator
-	return nullptr;
+	std::cout << rows[0] << std::endl;
+	std::cout << rows[1] << std::endl;
+	std::cout << rows[2] << std::endl;
+
+	long long int newChildNode = rows[2] + (long long int) rows[1] * AIBoardNode::MIDDLE_ROW_ISOLATOR + (long long int) rows[0] * AIBoardNode::TOP_ROW_ISOLATOR;
+	return new AIBoardNode(this, direction, newEVertLocation, newEHorizLocation, newChildNode);
+}
+
+
+/**
+ * Internal method to calculate and set the heuristic value of this node!
+ * 
+ * For now, this is equal to the number of mismatched cells
+ */
+void AIBoardNode::calculateHeuristicValue() {
+	int topRow = _boardState / TOP_ROW_ISOLATOR;
+	int middleRow = (_boardState - (topRow * TOP_ROW_ISOLATOR)) / MIDDLE_ROW_ISOLATOR;
+	int bottomRow = _boardState - (topRow * TOP_ROW_ISOLATOR) - (middleRow * MIDDLE_ROW_ISOLATOR);
+	int countMismatched = 0;
+
+	// Iterate over each of the cells, and count the ones that don't match!
+	int topCell;
+	int bottomCell;
+
+	for(int i = 0; i < 5; i++) {
+		topCell = (int)(topRow / pow(10, 4 - i)) % 10;
+		bottomCell = (int)(bottomRow / pow(10, 4 - i)) % 10;
+		
+
+		if(topCell != bottomCell) {
+			countMismatched++;
+		}
+	}
+
+	this->_heuristicValue = countMismatched;
 }
 
 
