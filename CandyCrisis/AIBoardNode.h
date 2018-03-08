@@ -21,6 +21,7 @@ public:
 	int heuristicValue() { return _heuristicValue;  };
 
 	bool canMove(MovementDirection direction); // Will indicate if the AIPlayer can move in a specific direction from this AIBoardNode
+	bool isSolution();
 	AIBoardNode* generateChildFromMovement(MovementDirection direction); // Will generate a child node from the given direction
 
 	~AIBoardNode() { _parentNode = nullptr;  }

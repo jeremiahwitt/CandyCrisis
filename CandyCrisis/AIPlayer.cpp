@@ -10,6 +10,7 @@
 #include "AIPlayerUtilities.h"
 #include <queue>
 #include <functional>
+#include <stack>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ void AIPlayer::playGame() {
 	unordered_map<long long int, AIBoardNode*>* closedList = new unordered_map<long long int, AIBoardNode*>();
 	unordered_set<long long int>* openListSet = new unordered_set<long long int>();
 	priority_queue<AIBoardNode*, vector<AIBoardNode*>, CompareNodes>* openList = new priority_queue<AIBoardNode*, vector<AIBoardNode*>, CompareNodes>(); // TODO maybe have to change this to AIBoardNode*
+	stack<MovementDirection>* winningMovements = new stack<MovementDirection>();
 
 	// Get the board string from the Controller and turn it into a number
 	GameBoard* board = this->_gameController->getGameBoard();
@@ -37,14 +39,57 @@ void AIPlayer::playGame() {
 	openList->push(initialNode);
 
 	// Loop through open list
+	AIBoardNode* nextNode;
 	while(!openList->empty()) {
-		// If the node is solution, then generate stack of moves to use
-		// If the node is not the solution, generate all the children, and if they are not in open OR closed, then put in the closed list
-	}
+		// Get the next node, check if it is the solution
+		nextNode = openList->top();
+		if(nextNode->isSolution()) {
+			// Generate the stack of all the moves that generated the solution!
+			AIBoardNode* backPedalNode = nextNode;
+			while(backPedalNode->getParent() != nullptr) {
+				winningMovements->push(backPedalNode->getMovementGeneratedBy());
+				backPedalNode = backPedalNode->getParent();
+			}
+			break;
+		}
+		
+		// Remove the node from the open list and add it to the closed list
+		openList->pop();
+		closedList->emplace(nextNode->getBoardState(), nextNode);
+		openListSet->erase(nextNode->getBoardState());
 
+		// Generate all the possible children, and add them to the open list if they're not explored
+		MovementDirection possibleMoves[] = { UP, DOWN, LEFT, RIGHT };
+		for(int i = 0; i < 4; i++) {
+			if(nextNode->canMove(possibleMoves[i])) {
+				AIBoardNode* child = nextNode->generateChildFromMovement(possibleMoves[i]);
+				long long int boardState = child->getBoardState();
+				if(openListSet->find(boardState) == openListSet->end() && closedList->find(boardState) == closedList->end()) {
+					openListSet->insert(boardState);
+					openList->push(child);
+				} else {
+					delete child;
+				}
+			}
+		}
+	}
 
 	// Once the solution is found, we should have a stack of moves to make
 	// Pop the moves off, and provide them to the game controller, one by one
 
-	// TODO Make sure that everything that should be deleted, gets deleted!
+	try {
+		while (!winningMovements->empty()) {
+			_gameController->makeMove(winningMovements->top());
+			winningMovements->pop();
+		}
+	} catch (IllegalMoveException err) {
+		cout << "The AI player made an illegal move and LOST the game." << endl;
+		// TODO maybe throw this up to the top level?
+	} 
+
+	// Make sure that everything that should be deleted, gets deleted!
+	delete winningMovements;
+	delete closedList;
+	delete openListSet;
+	delete openList;
 }

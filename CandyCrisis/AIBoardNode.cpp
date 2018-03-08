@@ -88,9 +88,6 @@ AIBoardNode* AIBoardNode::generateChildFromMovement(MovementDirection direction)
 	}
 
 	// Reconstruct the long long int from the sum of all the rows, times their respective isolator
-	std::cout << rows[0] << std::endl;
-	std::cout << rows[1] << std::endl;
-	std::cout << rows[2] << std::endl;
 
 	long long int newChildNode = rows[2] + (long long int) rows[1] * AIBoardNode::MIDDLE_ROW_ISOLATOR + (long long int) rows[0] * AIBoardNode::TOP_ROW_ISOLATOR;
 	return new AIBoardNode(this, direction, newEVertLocation, newEHorizLocation, newChildNode);
@@ -123,6 +120,15 @@ void AIBoardNode::calculateHeuristicValue() {
 	}
 
 	this->_heuristicValue = countMismatched;
+}
+
+/**
+ * This method checks if the AIBoardNode represents a solved game. Takes advantage of the fact that the heuristic value,
+ * at the moment, will be 0 if the game is solved!
+ */
+bool AIBoardNode::isSolution() {
+	// TODO, if the heuristic calculation changes, may need to fix this!
+	return _heuristicValue == 0;
 }
 
 
