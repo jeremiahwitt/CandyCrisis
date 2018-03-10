@@ -19,6 +19,7 @@ public:
 	Controller(GameBoard* theGame, GameView* theView);
 	bool makeMove(MovementDirection direction);
 	string getSolutionPath();
+	void setIsHuman(bool isHuman);
 	GameBoard* getGameBoard() { return _board; }
 	~Controller() { delete _board; delete _view; }
 
@@ -26,5 +27,6 @@ private:
 	GameBoard* _board;
 	string _solutionPathString;
 	GameView* _view;
+	bool _isHuman;
 };
 #endif

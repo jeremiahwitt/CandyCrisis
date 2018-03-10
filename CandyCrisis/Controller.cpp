@@ -21,6 +21,10 @@ Controller::Controller(GameBoard* theGame) {
 	_solutionPathString = "";
 }
 
+void Controller::setIsHuman(bool isHuman) {
+	_isHuman = isHuman;
+}
+
 /**
  * Will attempt to make a move requested by the user. If the move is successful, this method
  * will return whether or not the board has been solved. If the move is invalid, then an
@@ -48,7 +52,18 @@ bool Controller::makeMove(MovementDirection direction) {
 	}
 
 	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
-	cout << "The moves so far are " << _solutionPathString << endl;
+	if(_isHuman || isSolved) {
+		if(isSolved && !_isHuman) {
+			_board->printCurrentConfiguration();
+		}
+		cout << "The moves so far are " << _solutionPathString << endl;
+	}
+
+	// TODO for printing out to file
+	// 1 - grab time
+	// 2 - calc diff
+	// 4 - output to screen the solution path
+	// 5 - !append! to the file the solution path and the time
 
 	return isSolved;
 }

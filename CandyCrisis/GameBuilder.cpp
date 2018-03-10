@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "GameBuilder.h"
 #include "GameView.h"
+#include "HumanPlayer.h"
 
 GameBuilder::GameBuilder() {
 	_playerIsSet = false;
@@ -39,9 +40,16 @@ Controller* GameBuilder::setupGame() {
 	}
 
 	GameBoard* game = new GameBoard(board);
-	GameView* view = new GameView(game);
+	if (dynamic_cast<HumanPlayer*>(_thePlayer)) {
+		GameView* view = new GameView(game);
+	}
 	Controller* gameController = new Controller(game);
 	_thePlayer->setController(gameController);
+	if(dynamic_cast<HumanPlayer*>(_thePlayer)) {
+		gameController->setIsHuman(true);
+	} else {
+		gameController->setIsHuman(false);
+	}
 
 	return gameController;
 }

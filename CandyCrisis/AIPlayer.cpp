@@ -84,7 +84,7 @@ void AIPlayer::playGame() {
 		}
 	} catch (IllegalMoveException err) {
 		cout << "The AI player made an illegal move and LOST the game." << endl;
-		// TODO maybe throw this up to the top level?
+		throw err;
 	} 
 
 	// Make sure that everything that should be deleted, gets deleted!
