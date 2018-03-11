@@ -15,10 +15,11 @@ Controller::Controller(GameBoard* theGame, GameView* theView) {
 /**
  * Public Constructor. Sets up the GameBoard to be used by this controller and the solution path.
  */
-Controller::Controller(GameBoard* theGame) {
+Controller::Controller(GameBoard* theGame, milliseconds startTime) {
 	_board = theGame;
 	_board->printCurrentConfiguration();
 	_solutionPathString = "";
+	_startTime = startTime;
 }
 
 void Controller::setIsHuman(bool isHuman) {
@@ -54,7 +55,9 @@ bool Controller::makeMove(MovementDirection direction) {
 	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
 	if(_isHuman || isSolved) {
 		if(isSolved && !_isHuman) {
+			milliseconds endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 			_board->printCurrentConfiguration();
+			cout << "Took " << (endTime - _startTime).count() << " ms" << endl;
 		}
 		cout << "The moves so far are " << _solutionPathString << endl;
 	}

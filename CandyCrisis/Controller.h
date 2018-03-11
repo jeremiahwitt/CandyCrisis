@@ -1,12 +1,14 @@
 #pragma once
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+#include <chrono>
 #include "MovementDirection.h"
 #include "GameBoard.h"
 #include "GameView.h"
 #include <vector>
 
 using namespace std;
+using namespace std::chrono;
 
 /**
  * @class Controller
@@ -15,7 +17,7 @@ using namespace std;
  */
 class Controller {
 public:
-	Controller(GameBoard* theGame);
+	Controller(GameBoard* theGame, milliseconds startTime);
 	Controller(GameBoard* theGame, GameView* theView);
 	bool makeMove(MovementDirection direction);
 	string getSolutionPath();
@@ -24,6 +26,7 @@ public:
 	~Controller() { delete _board; delete _view; }
 
 private:
+	milliseconds _startTime;
 	GameBoard* _board;
 	string _solutionPathString;
 	GameView* _view;

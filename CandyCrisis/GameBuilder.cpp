@@ -1,5 +1,5 @@
-#pragma once
 #include "stdafx.h"
+#pragma once
 #include "GameBuilder.h"
 #include "GameView.h"
 #include "HumanPlayer.h"
@@ -7,6 +7,15 @@
 GameBuilder::GameBuilder() {
 	_playerIsSet = false;
 	_configuratorIsSet = false;
+}
+
+/**
+ * Will be used to provide the configurator with the time when the game creation process
+ * started
+ */
+GameBuilder* GameBuilder::time(milliseconds startTime) {
+	_startTime = startTime;
+	return this;
 }
 
 /**
@@ -43,7 +52,7 @@ Controller* GameBuilder::setupGame() {
 	if (dynamic_cast<HumanPlayer*>(_thePlayer)) {
 		GameView* view = new GameView(game);
 	}
-	Controller* gameController = new Controller(game);
+	Controller* gameController = new Controller(game, _startTime);
 	_thePlayer->setController(gameController);
 	if(dynamic_cast<HumanPlayer*>(_thePlayer)) {
 		gameController->setIsHuman(true);
