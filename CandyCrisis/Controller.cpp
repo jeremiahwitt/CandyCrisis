@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #pragma once
 #include "Controller.h"
+#include <fstream>
 
 /**
 * Public Constructor. Sets up the GameBoard to be used by this controller and the solution path, as well as the view for the GameBoard
@@ -8,7 +9,6 @@
 Controller::Controller(GameBoard* theGame, GameView* theView) {
 	_view = theView;
 	_board = theGame;
-	_board->printCurrentConfiguration();
 	_solutionPathString = "";
 }
 
@@ -17,7 +17,6 @@ Controller::Controller(GameBoard* theGame, GameView* theView) {
  */
 Controller::Controller(GameBoard* theGame, milliseconds startTime) {
 	_board = theGame;
-	_board->printCurrentConfiguration();
 	_solutionPathString = "";
 	_startTime = startTime;
 }
@@ -52,14 +51,20 @@ bool Controller::makeMove(MovementDirection direction) {
 		break;
 	}
 
-	_solutionPathString = _solutionPathString + (char) _board->get_E_Location() + " ";
+	_solutionPathString = _solutionPathString + (char) _board->get_E_Location();
 	if(_isHuman || isSolved) {
 		if(isSolved && !_isHuman) {
 			milliseconds endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
-			_board->printCurrentConfiguration();
-			cout << "Took " << (endTime - _startTime).count() << " ms" << endl;
+			long long duration = (endTime - _startTime).count();
+			ofstream resultsFile;
+			string filename = "results" + to_string(this->_gameNumber) + ".txt";
+			resultsFile.open(filename, ios_base::app);
+			resultsFile << _solutionPathString << endl << duration << " ms" << endl;
+			resultsFile.close();
+			this->duration = duration;
+		} else {
+			cout << "The moves so far are " << _solutionPathString << endl;
 		}
-		cout << "The moves so far are " << _solutionPathString << endl;
 	}
 
 	// TODO for printing out to file

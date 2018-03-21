@@ -8,11 +8,13 @@ using namespace std;
 class RandomConfigurator : public Configurator {
 public:
 	RandomConfigurator(int difficultyLevel);
+	RandomConfigurator(int difficultyLevel, int numLevels);
 	virtual string getGameBoard();
 	virtual bool hasAnotherBoard() {
-		return false;
+		return _numLevels > 0;
 	}
 private:
+	int _numLevels;
 	int _difficultyLevel;
 	vector<char> _getCharsForLevel();
 };

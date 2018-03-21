@@ -36,7 +36,7 @@ GameBuilder* GameBuilder::configurator(Configurator* theConfig) {
 	return this;
 }
 
-Controller* GameBuilder::setupGame() {
+Controller* GameBuilder::setupGame(int gameNumber) {
 	if(!_playerIsSet || !_configuratorIsSet) {
 		throw 1; 
 	}
@@ -49,13 +49,12 @@ Controller* GameBuilder::setupGame() {
 	}
 
 	GameBoard* game = new GameBoard(board);
-	if (dynamic_cast<HumanPlayer*>(_thePlayer)) {
-		GameView* view = new GameView(game);
-	}
 	Controller* gameController = new Controller(game, _startTime);
+	gameController->setGameNumber(gameNumber);
 	_thePlayer->setController(gameController);
 	if(dynamic_cast<HumanPlayer*>(_thePlayer)) {
 		gameController->setIsHuman(true);
+		GameView* view = new GameView(game);
 	} else {
 		gameController->setIsHuman(false);
 	}

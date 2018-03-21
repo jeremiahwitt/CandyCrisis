@@ -4,12 +4,20 @@
 #include "RandomConfigurator.h"
 using namespace std;
 
+/**
+* Constructs a RandomConfigurator with the desired difficulty level.
+*/
+RandomConfigurator::RandomConfigurator(int difficultyLevel, int numLevels) {
+	this->_difficultyLevel = difficultyLevel;
+	this->_numLevels = numLevels;
+}
 
 /**
 * Constructs a RandomConfigurator with the desired difficulty level.
 */
 RandomConfigurator::RandomConfigurator(int difficultyLevel) {
 	this->_difficultyLevel = difficultyLevel;
+	this->_numLevels = 1;
 }
 
 /**
@@ -17,6 +25,8 @@ RandomConfigurator::RandomConfigurator(int difficultyLevel) {
 * upon the desired difficulty level.
 */
 string RandomConfigurator::getGameBoard() {
+	this->_numLevels--; // Decrement the number of remaining levels!
+
 	srand(time(NULL));
 	vector<char> charsToBeUsed = _getCharsForLevel();
 

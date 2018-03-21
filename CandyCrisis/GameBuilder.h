@@ -13,7 +13,7 @@ public:
 	GameBuilder* time(milliseconds startTime);
 	GameBuilder* player(Player* thePlayer);
 	GameBuilder* configurator(Configurator* theConfig);
-	Controller* setupGame();
+	Controller* setupGame(int gameNumber);
 private:
 	bool _playerIsSet;
 	bool _configuratorIsSet;

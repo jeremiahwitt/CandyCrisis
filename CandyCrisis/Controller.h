@@ -24,8 +24,14 @@ public:
 	void setIsHuman(bool isHuman);
 	GameBoard* getGameBoard() { return _board; }
 	~Controller() { delete _board; delete _view; }
+	void setGameNumber(int game_number) {
+		this->_gameNumber = game_number;
+	}
+	long long getDuration() { return duration; }
 
 private:
+	int _gameNumber;
+	long long duration;
 	milliseconds _startTime;
 	GameBoard* _board;
 	string _solutionPathString;
