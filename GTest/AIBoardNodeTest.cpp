@@ -5,6 +5,36 @@
 
 using namespace std;
 
+// Tests based on f_of_node
+TEST(AIBoardNodeTest, TestZeroDepthWithFourHeuristic) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 111113303322221);
+
+	ASSERT_EQ(4, testNode.f_of_node());
+}
+
+TEST(AIBoardNodeTest, TestOneDepthWithFourHeuristic) {
+	AIBoardNode testNode1(nullptr, UP, 1, 2, 111113303322221);
+	AIBoardNode testNode2(&testNode1, UP, 1, 2, 111113303322221);
+
+
+	ASSERT_EQ(5, testNode2.f_of_node());
+}
+
+// Tests based on depth
+TEST(AIBoardNodeTest, TestZeroDepth) {
+	AIBoardNode testNode(nullptr, UP, 1, 2, 111112202211111);
+
+	ASSERT_EQ(0, testNode.depth());
+}
+
+TEST(AIBoardNodeTest, TestNodeDepth) {
+	AIBoardNode testNode1(nullptr, UP, 1, 2, 111112202211111);
+	AIBoardNode testNode2(&testNode1, UP, 1, 2, 111112202211111);
+
+
+	ASSERT_EQ(1, testNode2.depth());
+}
+
 // Tests based on heuristic value
 TEST(AIBoardNodeTest, TestZeroHeuristicValue) {
 	AIBoardNode testNode(nullptr, UP, 1, 2, 111112202211111);

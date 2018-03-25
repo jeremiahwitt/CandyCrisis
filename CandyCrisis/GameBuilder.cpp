@@ -55,6 +55,7 @@ Controller* GameBuilder::setupGame(int gameNumber) {
 	if(dynamic_cast<HumanPlayer*>(_thePlayer)) {
 		gameController->setIsHuman(true);
 		GameView* view = new GameView(game);
+		game->printCurrentConfiguration();
 	} else {
 		gameController->setIsHuman(false);
 	}

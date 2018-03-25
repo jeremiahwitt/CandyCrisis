@@ -12,6 +12,13 @@ AIBoardNode::AIBoardNode(AIBoardNode* parentNode, MovementDirection movementGene
 	this->_eHorizontalLocation = eHorizLocation;
 	this->_boardState = boardState;
 
+	// Set the depth based on the parent node!
+	if (_parentNode == nullptr) {
+		_depth = 0;
+	} else {
+		_depth = _parentNode->depth() + 1;
+	}
+
 	this->calculateHeuristicValue();
 }
 

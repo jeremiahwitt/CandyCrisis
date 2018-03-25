@@ -19,6 +19,8 @@ public:
 	MovementDirection getMovementGeneratedBy() { return _movementGeneratedBy; }
 	long long int getBoardState() { return _boardState; }
 	int heuristicValue() { return _heuristicValue;  };
+	int f_of_node() { return _depth + _heuristicValue; }
+	int depth() { return _depth;  }
 
 	bool canMove(MovementDirection direction); // Will indicate if the AIPlayer can move in a specific direction from this AIBoardNode
 	bool isSolution();
@@ -31,13 +33,15 @@ private:
 	int _eVerticalLocation;
 	int _eHorizontalLocation;
 	int _heuristicValue;
+	int _depth;
 	MovementDirection _movementGeneratedBy; // The direction of movement that generated this node
 	AIBoardNode* _parentNode; // Pointer to the parent node that generated this one
 };
 
 struct CompareNodes {
 	bool operator()(AIBoardNode* lhs, AIBoardNode* rhs) {
-		return lhs->heuristicValue() > rhs->heuristicValue();
+		// To switch back to based on heuristic, use: return lhs->heuristicValue() > rhs->heuristicValue();
+		return lhs->f_of_node() > rhs->f_of_node();
 	}
 };
 #endif
