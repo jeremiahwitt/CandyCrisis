@@ -13,6 +13,7 @@ public:
 	virtual bool hasAnotherBoard() {
 		return _numLevels > 0;
 	}
+	virtual int recentDifficulty() { return _difficultyLevel; }
 private:
 	int _numLevels;
 	int _difficultyLevel;

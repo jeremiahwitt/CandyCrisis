@@ -34,7 +34,7 @@ void AIPlayer::playGame() {
 	int e_VertPosition = board->get_E_VerticalPosition();
 
 	// Create the first node, put it on the open list
-	AIBoardNode* initialNode = new AIBoardNode(nullptr, UP, e_VertPosition, e_HorizPosition, numericalBoard);
+	AIBoardNode* initialNode = new AIBoardNode(nullptr, UP, this->_gameController->getDifficulty(), e_VertPosition, e_HorizPosition, numericalBoard);
 	openListSet->insert(numericalBoard);
 	openList->push(initialNode);
 

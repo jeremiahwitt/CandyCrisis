@@ -28,9 +28,11 @@ public:
 		this->_gameNumber = game_number;
 	}
 	long long getDuration() { return duration; }
-
+	void setDifficulty(int diff) { this->_difficulty = diff; }
+	int getDifficulty() { return this->_difficulty; }
 private:
 	int _gameNumber;
+	int _difficulty;
 	long long duration;
 	milliseconds _startTime;
 	GameBoard* _board;

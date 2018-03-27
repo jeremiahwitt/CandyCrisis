@@ -46,7 +46,7 @@ string FileConfigurator::getGameBoard() {
 	}
 
 	numGamesPlayed++;
-	verifyValidBoard(onlyBoardSymbolsForThisGame);
+	this->_recentDifficulty = verifyValidBoard(onlyBoardSymbolsForThisGame);
 	return onlyBoardSymbolsForThisGame;
 }
 
@@ -95,7 +95,7 @@ string FileConfigurator::_extractBoardSymbolFromFileContents(string fileContents
 	return onlyBoardSymbols;
 }
 
-void FileConfigurator::verifyValidBoard(string boardContents) {
+int FileConfigurator::verifyValidBoard(string boardContents) {
 	int countReese = 0;
 	int countBazooka = 0;
 	int countWalnettos = 0;
@@ -137,22 +137,22 @@ void FileConfigurator::verifyValidBoard(string boardContents) {
 
 	// LEVEL 1
 	if(countReese == 6 && countBazooka == 6 && countWalnettos == 2) {
-		return;
+		return 1;
 	}
 
 	// LEVEL 2
 	if (countReese == 6 && countBazooka == 4 && countWalnettos == 2 && countYork == 2) {
-		return;
+		return 2;
 	}
 
 	// LEVEL 3
 	if (countReese == 4 && countBazooka == 4 && countWalnettos == 2 && countYork == 2 && countGobstopper == 2) {
-		return;
+		return 3;
 	}
 
 	// LEVEL 4
 	if (countReese == 4 && countBazooka == 2 && countWalnettos == 2 && countYork == 2 && countGobstopper == 2 && countPez == 2) {
-		return;
+		return 4;
 	}
 
 	cout << "The board configuration is invalid!" << endl;

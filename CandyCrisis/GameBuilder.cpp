@@ -51,6 +51,7 @@ Controller* GameBuilder::setupGame(int gameNumber) {
 	GameBoard* game = new GameBoard(board);
 	Controller* gameController = new Controller(game, _startTime);
 	gameController->setGameNumber(gameNumber);
+	gameController->setDifficulty(_config->recentDifficulty());
 	_thePlayer->setController(gameController);
 	if(dynamic_cast<HumanPlayer*>(_thePlayer)) {
 		gameController->setIsHuman(true);

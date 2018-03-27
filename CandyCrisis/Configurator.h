@@ -14,6 +14,7 @@ public:
 	static const int BOARD_SIZE = 15;
 	virtual string getGameBoard() = 0;
 	virtual bool hasAnotherBoard() = 0;
+	virtual int recentDifficulty() = 0;
 	Configurator() {};
 };
 #endif

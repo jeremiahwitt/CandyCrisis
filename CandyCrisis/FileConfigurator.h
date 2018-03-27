@@ -17,12 +17,14 @@ public:
 	string getFilePath();
 	virtual string getGameBoard() override;
 	virtual bool hasAnotherBoard() override;
+	virtual int recentDifficulty() { return this->_recentDifficulty; };
 private:
 	string _filePath;
 	string _fileContents;
 	string _getFileContents();
 	string _extractBoardSymbolFromFileContents(string fileContents);
-	void verifyValidBoard(string boardContents);
+	int verifyValidBoard(string boardContents);
 	int numGamesPlayed;
+	int _recentDifficulty;
 };
 #endif

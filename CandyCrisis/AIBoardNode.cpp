@@ -1,16 +1,15 @@
 #include "stdafx.h"
 #include "AIBoardNode.h"
 
-/**
- * Public Constructor which sets all the properties of the AIBoardNode
- */
-AIBoardNode::AIBoardNode(AIBoardNode* parentNode, MovementDirection movementGeneratedBy,
+
+AIBoardNode::AIBoardNode(AIBoardNode* parentNode, MovementDirection movementGeneratedBy, int diff,
 	int eVertLocation, int eHorizLocation, long long int boardState) {
 	this->_parentNode = parentNode;
 	this->_movementGeneratedBy = movementGeneratedBy;
 	this->_eVerticalLocation = eVertLocation;
 	this->_eHorizontalLocation = eHorizLocation;
 	this->_boardState = boardState;
+	this->_difficulty = diff;
 
 	// Set the depth based on the parent node!
 	if (_parentNode == nullptr) {
@@ -122,12 +121,50 @@ void AIBoardNode::calculateHeuristicValue() {
 		
 
 		if(topCell != bottomCell) {
-			countMismatched++;
+			if(topCell > bottomCell) {
+				countMismatched += weightBasedOnDifficulty(topCell);
+			} else {
+				countMismatched += weightBasedOnDifficulty(bottomCell);
+			}
 		}
 	}
 
 	this->_heuristicValue = countMismatched;
 }
+
+int AIBoardNode::weightBasedOnDifficulty(int cellValue) {
+	switch(this->_difficulty) {
+	case 1:
+		if(cellValue == 3) {
+			return 2;
+		} else {
+			return 1;
+		}
+	case 2:
+		if(cellValue >= 3) {
+			return 3;
+		} else if (cellValue == 2) {
+			return 2;
+		} else {
+			return 1;
+		}
+	case 3:
+		if(cellValue >=3) {
+			return 2;
+		} else {
+			return 1;
+		}
+	case 4:
+		if(cellValue >=2) {
+			return 2;
+		} else {
+			return 1;
+		}
+	default:
+		return 1;
+	}
+}
+
 
 /**
  * This method checks if the AIBoardNode represents a solved game. Takes advantage of the fact that the heuristic value,
