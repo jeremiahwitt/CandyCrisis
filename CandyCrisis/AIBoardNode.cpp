@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "AIBoardNode.h"
+#include <list>
 
 /**
  * Public Constructor which sets all the properties of the AIBoardNode
@@ -111,6 +112,28 @@ void AIBoardNode::calculateHeuristicValue() {
 	int middleRow = (_boardState - (topRow * TOP_ROW_ISOLATOR)) / MIDDLE_ROW_ISOLATOR;
 	int bottomRow = _boardState - (topRow * TOP_ROW_ISOLATOR) - (middleRow * MIDDLE_ROW_ISOLATOR);
 	int countMismatched = 0;
+	int heuristic = 0;
+
+	// Before we waste time doing anything else, lets make sure that top != bottom
+	if(topRow == bottomRow) {
+		this->_heuristicValue = heuristic;
+		return;
+	}
+
+	// Okay, so top != bottom. Lets setup for the search for closest match now!
+	std::list<int> *locations[7];
+
+	for(int i = 0; i < 7; i++) {
+		locations[i] = new std::list<int>();
+	}
+
+	// Now we have all of our lists, lets set the location of each kind of cell in the middle row
+	int cell;
+	for(int i = 0; i < 5; i++) {
+		// We're going to add the location of each kind of symbol to the lists of locations
+		cell = (int)(middleRow / pow(10, 4 - i)) % 10;
+		locations[cell]->push_back(i);
+	}
 
 	// Iterate over each of the cells, and count the ones that don't match!
 	int topCell;
@@ -121,12 +144,54 @@ void AIBoardNode::calculateHeuristicValue() {
 		bottomCell = (int)(bottomRow / pow(10, 4 - i)) % 10;
 		
 
-		if(topCell != bottomCell) {
-			countMismatched++;
+		if (topCell != bottomCell) {
+
+			// GET TOP DISTANCE
+			int topDistance = 3; // TODO could be adjusted!
+			std::list<int>::iterator loc = locations[topCell]->begin();
+			while (loc != locations[topCell]->end()) {
+				int newDist = abs(i - *loc);
+				if (newDist < topDistance) {
+					topDistance = newDist;
+				}
+				++loc;
+			}
+
+			// GET BOTTOM DISTANCE
+			int bottomDistance = 3; // TODO could be adjusted!
+			loc = locations[bottomCell]->begin();
+			while (loc != locations[bottomCell]->end()) {
+				int newDist = abs(i - *loc);
+				if (newDist < bottomDistance) {
+					bottomDistance = newDist;
+				}
+				++loc;
+			}
+
+			// Now, see which one is better, and we'll favour that!
+			if(topDistance < bottomDistance) {
+				heuristic += topDistance + 1;
+			} else {
+				heuristic += bottomDistance + 1;
+			}
+
+			/*
+			// Whichever is the max, add a little weight based on rarety
+			if(topCell > bottomCell) {
+				countMismatched += topCell;
+			} else {
+				countMismatched += bottomCell;
+			}*/
+			//countMismatched++;
 		}
 	}
 
-	this->_heuristicValue = countMismatched;
+	//this->_heuristicValue = countMismatched;
+	this->_heuristicValue = heuristic;
+
+	for(int i = 0; i < 5; i++) {
+		delete locations[i];
+	}
 }
 
 /**
